@@ -1,0 +1,53 @@
+@import "../../app.scss";
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: rem(500);
+}
+.content__container {
+}
+.content__top {
+  padding: rem(8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content__title {
+  display: flex;
+  align-items: center;
+  gap: rem(14);
+}
+.title {
+}
+.title__content {
+  font-size: rem(24);
+  font-weight: 600;
+  color: $mainColor;
+}
+.title__results {
+  font-size: rem(20);
+  color: #757195;
+}
+.content__sort {
+  padding: rem(10);
+  font-size: rem(20);
+  font-weight: 500;
+}
+.content__main {
+  flex: 1 1 100%;
+  padding: rem(20) rem(8);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin: rem(-10);
+  & > * {
+    flex: 0 0 20%;
+    align-self: stretch;
+    max-height: rem(400);
+    overflow: hidden;
+  }
+}
+.content__button {
+}

@@ -6,3 +6,5 @@ sass
 .env
 .env.local
 template
+assets
+images

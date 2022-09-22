@@ -1,12 +1,12 @@
 import React from "react";
-import "./app.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="container pt-4">
-      Hello, Word!
-    </div>
+  <>
+    <Header/>
+  </>
   )
 }
 

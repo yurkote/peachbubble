@@ -1,0 +1,66 @@
+@import "../../app.scss";
+
+.card {
+  position: relative;
+  padding: 0 rem(10);
+  margin: rem(20) 0;
+}
+.card__fav {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: rem(22);
+  border-radius: 50%;
+  background-color: #fff;
+  width: rem(32);
+  height: rem(32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s;
+  &:hover {
+    transform: scale(1.2);
+    color: red;
+  }
+}
+.card__tocart {
+  position: absolute;
+  bottom: 0%;
+  right: 10%;
+  font-size: rem(30);
+  border-radius: 5px;
+  background-color: #f2f2f6;
+  width: rem(50);
+  height: rem(50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: rem(10);
+}
+.card__img {
+  border-radius: 5px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+.card__text {
+  padding: rem(10) 0;
+}
+.card__title {
+  font-size: rem(16);
+  font-weight: 500;
+}
+.card__author {
+  padding-top: rem(10);
+}
+.card__price {
+  padding-top: rem(20);
+  font-size: rem(22);
+  font-weight: 500;
+  span {
+    padding-left: 4px;
+  }
+}
+.price-card {
+}

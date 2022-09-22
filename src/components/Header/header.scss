@@ -1,0 +1,82 @@
+@import "../../app.scss";
+.header {
+  height: rem(88);
+  padding: rem(16) rem(32);
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    height: rem(2);
+    border-bottom: 2px solid #f2f2f6;
+  }
+}
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: rem(20);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: rem(50);
+  letter-spacing: -2px;
+  color: $colorPeach;
+}
+.logo {
+  width: rem(50);
+  height: rem(50);
+}
+.header__search {
+}
+.search {
+  flex: 1 1 auto;
+  text-align: center;
+  align-self: stretch;
+}
+.search__input {
+  border: 2px solid #ffd8b3;
+  border-radius: 5px;
+  width: 90%;
+  height: 100%;
+  background-color: $colorPeach;
+  padding: 0 rem(10);
+  font-size: rem(16);
+  transition: all 0.4s;
+  &:active {
+    border-color: #f2f2f6;
+  }
+  &:focus-visible {
+    outline: none;
+    border-color: #f2f2f6;
+  }
+
+}
+.header__buttons {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(15);
+    font-size: rem(20);
+    li {
+      transition: all 0.4s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+.header__login {
+}
+.header__sign {
+}
+.header__fav {
+}
+.header__cart {
+}
