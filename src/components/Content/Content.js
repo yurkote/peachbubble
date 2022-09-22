@@ -21,8 +21,13 @@ const Content = () => {
           <Card/>
           <Card/>
           <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
         </div>
-        <div className="content__button">There will be buttons</div>
+        <div className="content__button">
+          <button className="button-products button"><span className="button__text">View more t-shirts</span></button>
+        </div>
       </main>
     </>
   );

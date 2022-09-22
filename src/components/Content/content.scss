@@ -50,4 +50,25 @@
   }
 }
 .content__button {
+  text-align: center;
+  padding: rem(10);
+}
+.button {
+  width: 245px;
+  height: 55px;
+  background-color: #9dd458;
+  border-radius: 18px;
+  box-shadow: 1px 4px 8px -3px rgba(66, 68, 90, 1);
+  &:hover {
+    background-color: #81af49;
+  }
+  &:active {
+    box-shadow: inset 1px 4px 8px -3px rgba(66, 68, 90, 1);
+  }
+}
+.button__text {
+  color: #fff;
+  font-size: rem(18);
+}
+.button-products {
 }

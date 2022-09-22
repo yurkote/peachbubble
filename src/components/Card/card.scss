@@ -4,9 +4,13 @@
   position: relative;
   padding: 0 rem(10);
   margin: rem(20) 0;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .card__fav {
   position: absolute;
+  z-index: 1;
   top: 8px;
   right: 16px;
   font-size: rem(22);
@@ -18,16 +22,36 @@
   align-items: center;
   justify-content: center;
   transition: all 0.4s;
+  box-shadow: 0 3px 4px -1px rgba(0,0,0,.15), 0 5px 10px 0 rgba(0,0,0,.1), 0 1px 12px 0 rgba(0,0,0,.1);;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    svg {
+      width: rem(16);
+      height: rem(16);
+    }
+  }
   &:hover {
-    transform: scale(1.2);
-    color: red;
+    background-color: #f2f2f6;
+    color: rgb(255, 208, 0);
+    // a {
+    //   svg {
+    //     path {
+    //       stroke: $colorPeach;
+    //       fill: $colorPeach;
+    //     }
+    //   }
+    // }
   }
 }
 .card__tocart {
   position: absolute;
   bottom: 0%;
-  right: 10%;
-  font-size: rem(30);
+  right: 0%;
+  font-size: rem(35);
   border-radius: 5px;
   background-color: #f2f2f6;
   width: rem(50);
@@ -36,11 +60,34 @@
   align-items: center;
   justify-content: center;
   margin-bottom: rem(10);
+  margin-right: rem(10);
+  transition: all 0.2s;
+  &:hover {
+    background-color: $colorPeach;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: grey;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
 }
 .card__img {
   border-radius: 5px;
   overflow: hidden;
+  &:hover {
+    img {
+      transform: scale(1.5);
+    }
+  }
   img {
+    transition: all 0.3s;
     width: 100%;
   }
 }

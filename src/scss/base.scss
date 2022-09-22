@@ -30,6 +30,9 @@
 // Стили для отзывчивых картинок (IBG)
 // Сниппет (HTML): ibg (div c картинкой и классами)
 // Сниппет (HTML): ibga (a c картинкой и классами)
+*:focus-visible {
+	outline: 4px solid $colorPeach;
+}
 [class*="-ibg"] {
 	position: relative;
 	img {
