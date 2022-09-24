@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 
 function App() {
+  const [cartOpened, setCartOpened] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  const onAddToCart = (cardObject) => {
+    setCartItems((prev) => [...prev, cardObject]);
+  };
+  const removeFromCart = (cardObject) => {
+    console.log("remove");
+    setCartItems((prev) => prev.filter((el) => el.name !== cardObject.name));
+  };
+  const removeMiniCard = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const body = document.getElementsByTagName("body")[0];
+  cartOpened ? body.classList.add("lock") : body.classList.remove("lock");
+
   return (
-  <>
-  <div className="wrapper">
-    <Header/>
-    <Content/>
-    <Cart/>
-  </div>
-  </>
-  )
+    <>
+      <div className="wrapper">
+        <Header onClickCart={() => setCartOpened(true)} />
+        <Content
+          onPlusCard={onAddToCart}
+          onMinusCard={removeFromCart}
+        />
+        {cartOpened && (
+          <Cart
+            items={cartItems}
+            onClose={() => setCartOpened(false)}
+            onRemove={removeMiniCard}
+          />
+        )}
+      </div>
+    </>
+  );
 }
 
 export default App;

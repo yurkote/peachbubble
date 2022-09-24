@@ -3,7 +3,7 @@ import Content from "../Content/Content";
 import styles from "./header.module.scss";
 import "./header.scss";
 
-const Header = () => {
+const Header = ({onClickCart}) => {
 
   return (
     <>
@@ -42,7 +42,7 @@ const Header = () => {
                 <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M9.7 3.7L8 5.4l-.53-.53L6.3 3.7A3.25 3.25 0 0 0 .75 6c0 .85.27 1.38 1.22 2.32l5.85 5.86c.05.04.11.07.18.07.07 0 .13-.03.18-.07l5.84-5.84c.94-.94 1.23-1.5 1.23-2.34A3.25 3.25 0 0 0 9.7 3.7z" stroke="#40354E" strokeWidth="1.5" fill="none"/></svg>
                 </a>
               </li>
-              <li className="header__cart">
+              <li className="header__cart" onClick={onClickCart}>
                 <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="20" r="2"></circle><circle cx="17" cy="20" r="2"></circle><path d="M18 17H6a1 1 0 01-1-.79L2.19 3H1a1 1 0 010-2h2a1 1 0 011 .79L6.81 15h10.37l1.6-8H5a1 1 0 01-1-1c0-.55-.55-1 0-1h16a1 1 0 01.77.37 1 1 0 01.23.83l-2 10a1 1 0 01-1 .8z"></path></svg>
                 </a>

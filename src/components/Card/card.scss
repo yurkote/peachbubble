@@ -22,7 +22,8 @@
   align-items: center;
   justify-content: center;
   transition: all 0.4s;
-  box-shadow: 0 3px 4px -1px rgba(0,0,0,.15), 0 5px 10px 0 rgba(0,0,0,.1), 0 1px 12px 0 rgba(0,0,0,.1);;
+  box-shadow: 0 3px 4px -1px rgba(0, 0, 0, 0.15),
+    0 5px 10px 0 rgba(0, 0, 0, 0.1), 0 1px 12px 0 rgba(0, 0, 0, 0.1);
   a {
     display: flex;
     align-items: center;
@@ -51,7 +52,6 @@
   position: absolute;
   bottom: 0%;
   right: 0%;
-  font-size: rem(35);
   border-radius: 5px;
   background-color: #f2f2f6;
   width: rem(50);
@@ -65,16 +65,31 @@
   &:hover {
     background-color: $colorPeach;
   }
-  a {
+  button {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
+    border-radius: 5px;
+    font-size: rem(35);
     color: grey;
     transition: all 0.3s;
-    &:hover {
-      transform: scale(1.3);
+    &::after {
+      transition: all 0.3s;
+      content: "+";
+    }
+  }
+}
+.in-cart {
+  transition: all 1s;
+  background-color: $colorPeach;
+  button {
+    &::after {
+      transition: all 0.3s;
+      content: "\2714";
+      color: green;
+      font-size: rem(30);
     }
   }
 }
