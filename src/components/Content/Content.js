@@ -138,7 +138,7 @@ const cards = [
   },
 ];
 
-const Content = ({onPlusCard, onMinusCard}) => {
+const Content = ({onPlusCard, onMinusCard, cardsOnCart}) => {
 
   const onClickFavorite = () => console.log("закладка");
   return (
@@ -147,7 +147,7 @@ const Content = ({onPlusCard, onMinusCard}) => {
         <div className="content__top">
           <div className="content__title title">
             <h1 className="title__content">Programming T-Shirts</h1>
-            <p className="title__results">30 Results</p>
+            <p className="title__results">{cards.length} Results</p>
           </div>
           <div className="content__sort">
             <a href="#">Most Relevant ^</a>
@@ -165,6 +165,7 @@ const Content = ({onPlusCard, onMinusCard}) => {
               author={obj.author}
               price={obj.price}
               imgUrl={obj.imgUrl}
+              cardsOnCart={cardsOnCart}
             />
           ))}
         </div>

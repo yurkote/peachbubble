@@ -8,6 +8,8 @@ function App() {
   const [cartOpened, setCartOpened] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
+  // console.log("items on app.js " + cartItems.map((item) => item.id));
+
   const onAddToCart = (cardObject) => {
     setCartItems((prev) => [...prev, cardObject]);
   };
@@ -29,6 +31,7 @@ function App() {
         <Content
           onPlusCard={onAddToCart}
           onMinusCard={removeFromCart}
+          cardsOnCart={cartItems}
         />
         {cartOpened && (
           <Cart

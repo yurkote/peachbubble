@@ -10,6 +10,7 @@ const Card = ({
   onPlus,
   onRemove,
   onFavorite,
+  cardsOnCart
 }) => {
   // const [isAdded, setIsAdded] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
@@ -21,10 +22,14 @@ const Card = ({
     if (!isAdded) {
       onPlus(obj);
     } else {
-      onRemove(obj, isAdded, setIsAdded);
+      onRemove(obj);
     }
   };
-  console.log("render");
+
+  useEffect(() => {
+    setIsAdded(false);
+    cardsOnCart.filter((elem) => (elem.id == id ? setIsAdded(true) : null));
+  }, [cardsOnCart]);
   return (
     <>
       <div className="card">
@@ -41,9 +46,9 @@ const Card = ({
           </a>
         </div>
         <div className={`card__tocart ${isAdded ? "in-cart" : ""}`}>
-          <button onClick={() => onClickPlus()}></button>
+          <button onClick={onClickPlus}></button>
         </div>
-        <div className="card__img">
+        <div className="card__img" onClick={onClickPlus}>
           <img src={imgUrl} alt="img" />
         </div>
         <div className="card__text">
