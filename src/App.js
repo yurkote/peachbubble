@@ -7,15 +7,13 @@ import Header from "./components/Header/Header";
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-
-  // console.log("items on app.js " + cartItems.map((item) => item.id));
+  const [searchValue, setSearchValue] = useState('');
 
   const onAddToCart = (cardObject) => {
     setCartItems((prev) => [...prev, cardObject]);
   };
   const removeFromCart = (cardObject) => {
-    console.log("remove");
-    setCartItems((prev) => prev.filter((el) => el.name !== cardObject.name));
+    setCartItems((prev) => prev.filter((el) => el.id !== cardObject.id));
   };
   const removeMiniCard = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
@@ -27,11 +25,12 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Header onClickCart={() => setCartOpened(true)} />
+        <Header onClickCart={() => setCartOpened(true)} inputValue={searchValue} setInputValue={setSearchValue} />
         <Content
           onPlusCard={onAddToCart}
           onMinusCard={removeFromCart}
           cardsOnCart={cartItems}
+          inputValue={searchValue}
         />
         {cartOpened && (
           <Cart
