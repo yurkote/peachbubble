@@ -18,7 +18,6 @@ const Card = ({
   const obj = { id, name, imgUrl, price };
 
   const onClickPlus = () => {
-    setIsAdded(!isAdded);
     if (!isAdded) {
       onPlus(obj);
     } else {
