@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
 
-const Header = ({ onClickCart, inputValue, setInputValue }) => {
+const Header = ({ onClickCart, inputValue, setInputValue, cartItems }) => {
   const onSearch = (e) => {
     setInputValue(e.target.value);
   };
+
+  console.log("render");
 
   return (
     <header className="header">
@@ -66,7 +68,7 @@ const Header = ({ onClickCart, inputValue, setInputValue }) => {
               </Link>
             </li>
             <li className="header__cart" onClick={onClickCart}>
-                <a href="#">
+              <a href="#">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -76,7 +78,10 @@ const Header = ({ onClickCart, inputValue, setInputValue }) => {
                   <circle cx="17" cy="20" r="2"></circle>
                   <path d="M18 17H6a1 1 0 01-1-.79L2.19 3H1a1 1 0 010-2h2a1 1 0 011 .79L6.81 15h10.37l1.6-8H5a1 1 0 01-1-1c0-.55-.55-1 0-1h16a1 1 0 01.77.37 1 1 0 01.23.83l-2 10a1 1 0 01-1 .8z"></path>
                 </svg>
-                </a>
+              </a>
+              <div className={`cart__count ${cartItems.length > 0 && "count-on"}`}>
+                <span>{cartItems.length}</span>
+              </div>
             </li>
           </ul>
         </div>

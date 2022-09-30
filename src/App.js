@@ -42,6 +42,7 @@ function App() {
             onClickCart={() => setCartOpened(true)}
             inputValue={searchValue}
             setInputValue={setSearchValue}
+            cartItems={cartItems}
           />
           <Content
             addTo={add}

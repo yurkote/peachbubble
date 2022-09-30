@@ -4,7 +4,13 @@ import Card from "../components/Card/Card";
 import "../components/Content/content.scss";
 import "../components/Header/header.scss";
 
-const Favorites = ({ onClickCart, favoriteCards, cardsOnCart, addTo, removeFrom }) => {
+const Favorites = ({
+  onClickCart,
+  favoriteCards,
+  cardsOnCart,
+  addTo,
+  removeFrom,
+}) => {
   return (
     <>
       <header className="header">
@@ -64,6 +70,13 @@ const Favorites = ({ onClickCart, favoriteCards, cardsOnCart, addTo, removeFrom 
                     <path d="M18 17H6a1 1 0 01-1-.79L2.19 3H1a1 1 0 010-2h2a1 1 0 011 .79L6.81 15h10.37l1.6-8H5a1 1 0 01-1-1c0-.55-.55-1 0-1h16a1 1 0 01.77.37 1 1 0 01.23.83l-2 10a1 1 0 01-1 .8z"></path>
                   </svg>
                 </a>
+                <div
+                  className={`cart__count ${
+                    cardsOnCart.length > 0 && "slide-fwd-tr"
+                  }`}
+                >
+                  <span>{cardsOnCart.length}</span>
+                </div>
               </li>
             </ul>
           </div>
@@ -73,7 +86,7 @@ const Favorites = ({ onClickCart, favoriteCards, cardsOnCart, addTo, removeFrom 
         <div className="content__top">
           <div className="content__title title">
             <h1 className="title__content">Favorites</h1>
-            <p className="title__results">Results</p>
+            <p className="title__results">{favoriteCards.length} Results</p>
           </div>
         </div>
         <div className="content__main">
@@ -89,7 +102,6 @@ const Favorites = ({ onClickCart, favoriteCards, cardsOnCart, addTo, removeFrom 
           ))}
         </div>
       </main>
-      {/* <Content /> */}
     </>
   );
 };
