@@ -39,7 +39,7 @@
   font-weight: 500;
 }
 .content__main {
-  flex: 1 1 100%;
+  // flex: 1 1 100%;
   padding: rem(20) rem(8);
   display: flex;
   flex-wrap: wrap;
@@ -48,7 +48,7 @@
   margin: rem(-10);
   & > * {
     flex: 0 0 20%;
-    align-self: stretch;
+    // align-self: stretch;
     max-height: rem(400);
     overflow: hidden;
   }

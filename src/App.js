@@ -1,22 +1,34 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
+import axios from "axios";
+import "./app.scss";
+import Favorites from "./pages/Favorites";
+
+const cartState = JSON.parse(localStorage.getItem("cardsOncart"));
+const favoriteState = JSON.parse(localStorage.getItem("favoriteCards"));
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [cartItems, setCartItems] = useState(cartState ?? []);
+  const [searchValue, setSearchValue] = useState("");
+  const [favoriteCards, setFavoriteCards] = useState(favoriteState ?? []);
 
-  const onAddToCart = (cardObject) => {
-    setCartItems((prev) => [...prev, cardObject]);
+  const add = (cardObject, flag) => {
+    if (flag) {
+      setFavoriteCards((prev) => [...prev, cardObject]);
+    } else {
+      setCartItems((prev) => [...prev, cardObject]);
+    }
   };
-  const removeFromCart = (cardObject) => {
-    setCartItems((prev) => prev.filter((el) => el.id !== cardObject.id));
-  };
-  const removeMiniCard = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const remove = (id, flag) => {
+    if (flag) {
+      setFavoriteCards((prev) => prev.filter((el) => el.id !== id));
+    } else {
+      setCartItems((prev) => prev.filter((el) => el.id !== id));
+    }
   };
 
   const body = document.getElementsByTagName("body")[0];
@@ -25,18 +37,34 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Header onClickCart={() => setCartOpened(true)} inputValue={searchValue} setInputValue={setSearchValue} />
-        <Content
-          onPlusCard={onAddToCart}
-          onMinusCard={removeFromCart}
-          cardsOnCart={cartItems}
-          inputValue={searchValue}
-        />
+        <Route path="/" exact>
+          <Header
+            onClickCart={() => setCartOpened(true)}
+            inputValue={searchValue}
+            setInputValue={setSearchValue}
+          />
+          <Content
+            addTo={add}
+            removeFrom={remove}
+            cardsOnCart={cartItems}
+            inputValue={searchValue}
+            favoriteCards={favoriteCards}
+          />
+        </Route>
+        <Route path="/favorites">
+          <Favorites
+            onClickCart={() => setCartOpened(true)}
+            favoriteCards={favoriteCards}
+            cardsOnCart={cartItems}
+            addTo={add}
+            removeFrom={remove}
+          />
+        </Route>
         {cartOpened && (
           <Cart
             items={cartItems}
             onClose={() => setCartOpened(false)}
-            onRemove={removeMiniCard}
+            removeFrom={remove}
           />
         )}
       </div>

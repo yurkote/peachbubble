@@ -7,32 +7,48 @@ const Card = ({
   author,
   price,
   imgUrl,
-  onPlus,
-  onRemove,
-  onFavorite,
-  cardsOnCart
+  addTo,
+  removeFrom,
+  cardsOnCart,
+  favoriteCards,
 }) => {
-  // const [isAdded, setIsAdded] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
-  const obj = { id, name, imgUrl, price };
+  const obj = { id, name, author, imgUrl, price };
 
   const onClickPlus = () => {
     if (!isAdded) {
-      onPlus(obj);
+      addTo(obj, false);
     } else {
-      onRemove(obj);
+      removeFrom(id, false);
+    }
+  };
+
+  const onClickFavorite = () => {
+    if (!favorite) {
+      addTo(obj, true);
+      setFavorite(!favorite);
+    } else {
+      removeFrom(id, true);
+      setFavorite(!favorite);
     }
   };
 
   useEffect(() => {
     setIsAdded(false);
     cardsOnCart.filter((elem) => (elem.id == id ? setIsAdded(true) : null));
-  }, [cardsOnCart]);
+    favoriteCards.filter((elem) => (elem.id == id ? setFavorite(true) : null));
+    localStorage.setItem("cardsOncart", JSON.stringify(cardsOnCart));
+    localStorage.setItem("favoriteCards", JSON.stringify(favoriteCards));
+  }, [cardsOnCart, favoriteCards]);
   return (
     <>
       <div className="card">
-        <div className="card__fav" onClick={onFavorite}>
+        <div
+          className={`${favorite ? "card__fav card__fav-on" : "card__fav"}`}
+          onClick={onClickFavorite}
+        >
           <a href="#">
             <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
               <path

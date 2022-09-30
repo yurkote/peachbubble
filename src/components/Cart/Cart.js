@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import "./cart.scss";
 import MiniCard from "../MiniCard/MiniCard";
+import axios from "axios";
 
-const Cart = ({ onClose, items = [], onRemove }) => {
+const Cart = ({ onClose, items = [], removeFrom }) => {
+
   return (
     <div className="cart">
       <div className="cart__overlay" onClick={onClose}></div>
@@ -27,7 +29,7 @@ const Cart = ({ onClose, items = [], onRemove }) => {
                 price={obj.price}
                 key={obj.id}
                 id={obj.id}
-                onDelete={onRemove}
+                onDelete={removeFrom}
               />
             ))
           ) : (
