@@ -7,8 +7,6 @@ const Header = ({ onClickCart, inputValue, setInputValue, cartItems }) => {
     setInputValue(e.target.value);
   };
 
-  console.log("render");
-
   return (
     <header className="header">
       <div className="header__container">

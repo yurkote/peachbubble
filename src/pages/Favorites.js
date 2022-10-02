@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card/Card";
 import "../components/Content/content.scss";
@@ -72,7 +72,7 @@ const Favorites = ({
                 </a>
                 <div
                   className={`cart__count ${
-                    cardsOnCart.length > 0 && "slide-fwd-tr"
+                    cardsOnCart.length > 0 && "count-on"
                   }`}
                 >
                   <span>{cardsOnCart.length}</span>

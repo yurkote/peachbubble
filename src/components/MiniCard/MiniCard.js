@@ -18,7 +18,7 @@ const MiniCard = ({ name, image, price, id, onDelete }) => {
             <a
               href="#"
               className="mini-card-button__close"
-              onClick={() => onDelete(id)}
+              onClick={() => onDelete(id, false)}
             >
               X
             </a>
