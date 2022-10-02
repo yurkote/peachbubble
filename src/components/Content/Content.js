@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import "./content.scss";
 import axios from "axios";
+import CardLoader from "../CardLoader";
 
 // const cards = [
 //   {
@@ -145,10 +146,17 @@ const Content = ({
   cardsOnCart,
   inputValue,
   favoriteCards,
-  cards
+  cards,
+  isLoading,
 }) => {
   // const [cards, setCards] = useState([]);
   // const [card, setCards] = useState(cards);
+  const renderCards = () => {
+    const filtredCards = cards.filter((obj) =>
+      obj.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    return isLoading ? [...Array(10)] : filtredCards;
+  };
 
   useEffect(() => {
     // fetch("https://api.jsonbin.io/v3/b/633344335c146d63caab5e46", {
@@ -195,20 +203,18 @@ const Content = ({
           </div>
         </div>
         <div className="content__main">
-          {cards
-            .filter((obj) =>
-              obj.name.toLowerCase().includes(inputValue.toLowerCase())
-            )
-            .map((obj) => (
-              <Card
-                key={obj.id}
-                addTo={addTo}
-                removeFrom={removeFrom}
-                cardsOnCart={cardsOnCart}
-                favoriteCards={favoriteCards}
-                {...obj}
-              />
-            ))}
+          {isLoading
+            ? [...Array(15)].map((item, i) => <CardLoader key={i} />)
+            : cards.map((obj) => (
+                <Card
+                  key={obj.id}
+                  addTo={addTo}
+                  removeFrom={removeFrom}
+                  cardsOnCart={cardsOnCart}
+                  favoriteCards={favoriteCards}
+                  {...obj}
+                />
+              ))}
         </div>
         <div className="content__button">
           <button className="button-products button">

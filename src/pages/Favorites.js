@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card/Card";
 import "../components/Content/content.scss";
 import "../components/Header/header.scss";
+import CardLoader from "../components/CardLoader";
 
 const Favorites = ({
   onClickCart,
@@ -10,6 +11,7 @@ const Favorites = ({
   cardsOnCart,
   addTo,
   removeFrom,
+  isLoading,
 }) => {
   return (
     <>
@@ -90,16 +92,18 @@ const Favorites = ({
           </div>
         </div>
         <div className="content__main">
-          {favoriteCards.map((obj) => (
-            <Card
-              key={obj.id}
-              cardsOnCart={cardsOnCart}
-              favoriteCards={favoriteCards}
-              addTo={addTo}
-              removeFrom={removeFrom}
-              {...obj}
-            />
-          ))}
+          {isLoading
+            ? [...Array(10)].map((item, index) => <CardLoader key={index} />)
+            : favoriteCards.map((obj) => (
+                <Card
+                  key={obj.id}
+                  cardsOnCart={cardsOnCart}
+                  favoriteCards={favoriteCards}
+                  addTo={addTo}
+                  removeFrom={removeFrom}
+                  {...obj}
+                />
+              ))}
         </div>
       </main>
     </>

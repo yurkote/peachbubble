@@ -18,6 +18,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [favoriteCards, setFavoriteCards] = useState(favoriteState ?? []);
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const add = (cardObject, flag) => {
     if (flag) {
@@ -79,6 +80,9 @@ function App() {
       })
       .then((json) => {
         setCards(json.record);
+      })
+      .then(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -99,6 +103,7 @@ function App() {
             inputValue={searchValue}
             favoriteCards={favoriteCards}
             cards={cards}
+            isLoading={isLoading}
           />
         </Route>
         <Route path="/favorites">
@@ -108,6 +113,7 @@ function App() {
             cardsOnCart={cartItems}
             addTo={add}
             removeFrom={remove}
+            isLoading={isLoading}
           />
         </Route>
         {cartOpened && (
