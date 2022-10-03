@@ -20,6 +20,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  let cartStateItems;
+
   const add = (cardObject, flag) => {
     if (flag) {
       axios.post(
@@ -49,10 +51,10 @@ function App() {
     } else {
       axios(`https://633770b95327df4c43d42ba8.mockapi.io/cart/`).then((res) => {
         let delItem = res.data.filter((item) => item.id == id);
+        setCartItems((prev) => prev.filter((el) => el.id !== id));
         axios.delete(
           `https://633770b95327df4c43d42ba8.mockapi.io/cart/${delItem[0].idApi}`
         );
-        setCartItems((prev) => prev.filter((el) => el.id !== id));
       });
     }
   };

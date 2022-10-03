@@ -5,6 +5,7 @@ import MiniCard from "../MiniCard/MiniCard";
 import axios from "axios";
 
 const Cart = ({ onClose, items = [], removeFrom }) => {
+  let totalValue = items.reduce((prev, cur) => prev + +cur.price, 0).toFixed(2);
 
   return (
     <div className="cart">
@@ -42,7 +43,7 @@ const Cart = ({ onClose, items = [], removeFrom }) => {
         <div className="cart__footer">
           <div className="cart__fullprice">
             Full Price:
-            <span> $99999</span>
+            <span> ${totalValue}</span>
           </div>
           <button className="cart__button button">
             <span className="button-text cart__button-text">Checkout</span>
