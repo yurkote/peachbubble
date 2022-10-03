@@ -5,6 +5,7 @@
   flex-direction: column;
   min-height: rem(500);
   width: 100%;
+  margin-top: rem(100) !important;
 }
 .content__container {
 }
@@ -68,6 +69,12 @@
   }
   &:active {
     box-shadow: inset 1px 4px 8px -3px rgba(66, 68, 90, 1);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #a8a8a8;
+    box-shadow: none;
+    box-shadow: 1px 4px 8px -3px rgba(66, 68, 90, 1);
   }
 }
 .button__text {

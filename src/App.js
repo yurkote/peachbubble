@@ -20,33 +20,22 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const add = (cardObject, flag) => {
-  //   if (flag) {
-  //     axios.post(
-  //       "https://633770b95327df4c43d42ba8.mockapi.io/favorites",
-  //       cardObject
-  //     );
-  //     setFavoriteCards((prev) => [...prev, cardObject]);
-  //   } else {
-  //     axios.post(
-  //       "https://633770b95327df4c43d42ba8.mockapi.io/cart",
-  //       cardObject
-  //     );
-  //     setCartItems((prev) => [...prev, cardObject]);
-  //   }
-  // };
-  async function add(cardObject, flag) {
+  const add = (cardObject, flag) => {
     if (flag) {
-      try {
-        const { data } = await axios.post(
-          "https://633770b95327df4c43d42ba8.mockapi.io/favorites",
-          cardObject
-        );
-        setFavoriteCards((prev) => [...prev, data]);
-      } catch (error) {}
+      axios.post(
+        "https://633770b95327df4c43d42ba8.mockapi.io/favorites",
+        cardObject
+      );
+      setFavoriteCards((prev) => [...prev, cardObject]);
     } else {
+      axios.post(
+        "https://633770b95327df4c43d42ba8.mockapi.io/cart",
+        cardObject
+      );
+      setCartItems((prev) => [...prev, cardObject]);
     }
-  }
+  };
+
   async function remove(id, flag) {
     if (flag) {
       try {

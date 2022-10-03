@@ -149,40 +149,13 @@ const Content = ({
   cards,
   isLoading,
 }) => {
+  const [numberOfItems, setNumberOfItems] = useState(10);
+
+  const moreItems = () => {
+    setNumberOfItems((prev) => prev + 5);
+  };
   // const [cards, setCards] = useState([]);
   // const [card, setCards] = useState(cards);
-  const renderCards = () => {
-    const filtredCards = cards.filter((obj) =>
-      obj.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    return isLoading ? [...Array(10)] : filtredCards;
-  };
-
-  useEffect(() => {
-    // fetch("https://api.jsonbin.io/v3/b/633344335c146d63caab5e46", {
-    //   headers: {
-    //     "X-Master-Key":
-    //       "$2b$10$8Ilv3gooDpwrnrY/xNxp3OswUiDEVOGIzsulvt3IqNH5F46SWnzfq",
-    //   },
-    // })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((json) => {
-    //     setCards(json.record);
-    //   });
-    // const config = {
-    //   headers: {
-    //     "X-Master-Key":
-    //       "$2b$10$8Ilv3gooDpwrnrY/xNxp3OswUiDEVOGIzsulvt3IqNH5F46SWnzfq",
-    //   },
-    // };
-    // axios("https://api.jsonbin.io/v3/b/633344335c146d63caab5e46", config).then(
-    //   (res) => {
-    //     setCards(res.data.record);
-    //   }
-    // );
-  }, []);
 
   return (
     <>
@@ -206,6 +179,7 @@ const Content = ({
           {isLoading
             ? [...Array(15)].map((item, i) => <CardLoader key={i} />)
             : cards
+            .slice(0, numberOfItems)
                 .filter((obj) =>
                   obj.name.toLowerCase().includes(inputValue.toLowerCase())
                 )
@@ -221,7 +195,12 @@ const Content = ({
                 ))}
         </div>
         <div className="content__button">
-          <button className="button-products button">
+          <button
+            type="button"
+            className="button-products button"
+            disabled={numberOfItems === cards.length ? true : false}
+            onClick={moreItems}
+          >
             <span className="button__text">View more t-shirts</span>
           </button>
         </div>

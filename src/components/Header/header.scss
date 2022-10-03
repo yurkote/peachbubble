@@ -1,9 +1,13 @@
 @import "../../scss/variables";
 
 .header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: #fff;
   height: rem(88);
   padding: rem(16) rem(32);
-  position: relative;
+  // position: relative;
   &::after {
     content: "";
     position: absolute;
