@@ -205,16 +205,20 @@ const Content = ({
         <div className="content__main">
           {isLoading
             ? [...Array(15)].map((item, i) => <CardLoader key={i} />)
-            : cards.map((obj) => (
-                <Card
-                  key={obj.id}
-                  addTo={addTo}
-                  removeFrom={removeFrom}
-                  cardsOnCart={cardsOnCart}
-                  favoriteCards={favoriteCards}
-                  {...obj}
-                />
-              ))}
+            : cards
+                .filter((obj) =>
+                  obj.name.toLowerCase().includes(inputValue.toLowerCase())
+                )
+                .map((obj) => (
+                  <Card
+                    key={obj.id}
+                    addTo={addTo}
+                    removeFrom={removeFrom}
+                    cardsOnCart={cardsOnCart}
+                    favoriteCards={favoriteCards}
+                    {...obj}
+                  />
+                ))}
         </div>
         <div className="content__button">
           <button className="button-products button">
