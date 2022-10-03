@@ -7,8 +7,6 @@ const Header = ({ onClickCart, inputValue, setInputValue, cartItems }) => {
     setInputValue(e.target.value);
   };
 
-  console.log("render");
-
   return (
     <header className="header">
       <div className="header__container">
@@ -53,7 +51,7 @@ const Header = ({ onClickCart, inputValue, setInputValue, cartItems }) => {
               <a href="#">Login</a>
             </li>
             <li className="header__sign">
-              <a href="#">SignUp</a>
+              <a >SignUp</a>
             </li>
             <li className="header__fav">
               <Link to="/favorites">

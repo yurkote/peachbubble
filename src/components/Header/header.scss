@@ -1,9 +1,13 @@
 @import "../../scss/variables";
 
 .header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: #fff;
   height: rem(88);
-  padding: rem(16) rem(32);
-  position: relative;
+  padding: rem(16) 0;
+  // position: relative;
   &::after {
     content: "";
     position: absolute;
@@ -14,11 +18,14 @@
     height: rem(2);
     border-bottom: 2px solid #f2f2f6;
   }
+  @media screen and (max-width: 544px) {
+  }
 }
 .header__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 .header__logo {
   display: flex;
@@ -31,6 +38,9 @@
   letter-spacing: -2px;
   font-size: rem(30);
   color: $mainColor;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 }
 .logo {
   width: rem(50);
@@ -105,15 +115,24 @@
       }
     }
   }
+  @media screen and (max-width: 768px) {
+    flex: 0 0 20%;
+  }
 }
 .header__login {
   border-radius: 30px;
   &:focus {
     border-color: $colorPeach;
   }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .header__sign {
   border-radius: 30px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .header__fav {
   border-radius: 50%;
