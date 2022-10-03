@@ -39,8 +39,8 @@ const Card = ({
     setIsAdded(false);
     cardsOnCart.filter((elem) => (elem.id == id ? setIsAdded(true) : null));
     favoriteCards.filter((elem) => (elem.id == id ? setFavorite(true) : null));
-    localStorage.setItem("cardsOncart", JSON.stringify(cardsOnCart));
-    localStorage.setItem("favoriteCards", JSON.stringify(favoriteCards));
+    // localStorage.setItem("cardsOncart", JSON.stringify(cardsOnCart));
+    // localStorage.setItem("favoriteCards", JSON.stringify(favoriteCards));
   }, [cardsOnCart, favoriteCards]);
   return (
     <>

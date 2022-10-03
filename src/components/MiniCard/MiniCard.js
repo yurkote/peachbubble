@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./minicard.scss";
 
 const MiniCard = ({ name, image, price, id, onDelete }) => {
+  const [nonActive, setNonActive] = useState(false);
+
+  const handleClick = (id) => {
+    onDelete(id, false);
+    setNonActive(true);
+  }
+
   return (
     <>
       <div className="mini-card">
@@ -14,11 +21,11 @@ const MiniCard = ({ name, image, price, id, onDelete }) => {
             <h3 className="mini-card__title">{name}</h3>
             <p className="mini-card__price">${price}</p>
           </div>
-          <div className="mini-card-button">
+          <div className={`mini-card-button ${nonActive && "non-active"}`}>
             <a
               href="#"
               className="mini-card-button__close"
-              onClick={() => onDelete(id, false)}
+              onClick={() => handleClick(id)}
             >
               X
             </a>
