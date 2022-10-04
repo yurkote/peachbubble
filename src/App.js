@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
+import AppContext from "./components/context";
 import axios from "axios";
 import "./app.scss";
 import Favorites from "./pages/Favorites";
@@ -28,10 +29,7 @@ function App() {
       );
       setFavoriteCards((prev) => [...prev, cardObject]);
     } else {
-      axios.post(
-        "https://633770b95327df4c43d42ba8.mockapi.io/cart",
-        cardObject
-      );
+      axios.post("https://633770b95327df4c43d42ba8.mockapi.io/cart/", cardObject);
       setCartItems((prev) => [...prev, cardObject]);
     }
   };
@@ -97,42 +95,44 @@ function App() {
 
   return (
     <>
-      <div className="wrapper">
-        <Route path="/" exact>
-          <Header
-            onClickCart={() => setCartOpened(true)}
-            inputValue={searchValue}
-            setInputValue={setSearchValue}
-            cartItems={cartItems}
-          />
-          <Content
-            addTo={add}
-            removeFrom={remove}
-            cardsOnCart={cartItems}
-            inputValue={searchValue}
-            favoriteCards={favoriteCards}
-            cards={cards}
-            isLoading={isLoading}
-          />
-        </Route>
-        <Route path="/favorites">
-          <Favorites
-            onClickCart={() => setCartOpened(true)}
-            favoriteCards={favoriteCards}
-            cardsOnCart={cartItems}
-            addTo={add}
-            removeFrom={remove}
-            isLoading={isLoading}
-          />
-        </Route>
-        {cartOpened && (
-          <Cart
-            items={cartItems}
-            onClose={() => setCartOpened(false)}
-            removeFrom={remove}
-          />
-        )}
-      </div>
+      <AppContext.Provider value={{ cartItems, setCartItems }}>
+        <div className="wrapper">
+          <Route path="/" exact>
+            <Header
+              onClickCart={() => setCartOpened(true)}
+              inputValue={searchValue}
+              setInputValue={setSearchValue}
+              cartItems={cartItems}
+            />
+            <Content
+              addTo={add}
+              removeFrom={remove}
+              cardsOnCart={cartItems}
+              inputValue={searchValue}
+              favoriteCards={favoriteCards}
+              cards={cards}
+              isLoading={isLoading}
+            />
+          </Route>
+          <Route path="/favorites">
+            <Favorites
+              onClickCart={() => setCartOpened(true)}
+              favoriteCards={favoriteCards}
+              cardsOnCart={cartItems}
+              addTo={add}
+              removeFrom={remove}
+              isLoading={isLoading}
+            />
+          </Route>
+          {cartOpened && (
+            <Cart
+              items={cartItems}
+              onClose={() => setCartOpened(false)}
+              removeFrom={remove}
+            />
+          )}
+        </div>
+      </AppContext.Provider>
     </>
   );
 }

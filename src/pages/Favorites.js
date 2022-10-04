@@ -13,6 +13,21 @@ const Favorites = ({
   removeFrom,
   isLoading,
 }) => {
+  const favCards = () => {
+    let renderItems = favoriteCards.map((obj) => (
+      <Card
+        key={obj.id}
+        cardsOnCart={cardsOnCart}
+        favoriteCards={favoriteCards}
+        addTo={addTo}
+        removeFrom={removeFrom}
+        {...obj}
+      />
+    ));
+    const renderNoItems = <div className="content__main-no-items">No items in favorites</div>;
+
+    return favoriteCards.length > 0 ? renderItems : renderNoItems;
+  };
   return (
     <>
       <header className="header">
@@ -84,7 +99,7 @@ const Favorites = ({
           </div>
         </div>
       </header>
-      <main className="content content__container">
+      <main className="content content__container" style={{width: "100%"}}>
         <div className="content__top">
           <div className="content__title title">
             <h1 className="title__content">Favorites</h1>
@@ -94,16 +109,17 @@ const Favorites = ({
         <div className="content__main">
           {isLoading
             ? [...Array(10)].map((item, index) => <CardLoader key={index} />)
-            : favoriteCards.map((obj) => (
-                <Card
-                  key={obj.id}
-                  cardsOnCart={cardsOnCart}
-                  favoriteCards={favoriteCards}
-                  addTo={addTo}
-                  removeFrom={removeFrom}
-                  {...obj}
-                />
-              ))}
+            : // : favoriteCards.map((obj) => (
+              //     <Card
+              //       key={obj.id}
+              //       cardsOnCart={cardsOnCart}
+              //       favoriteCards={favoriteCards}
+              //       addTo={addTo}
+              //       removeFrom={removeFrom}
+              //       {...obj}
+              //     />
+              //   ))
+              favCards()}
         </div>
       </main>
     </>
