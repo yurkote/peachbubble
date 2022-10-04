@@ -179,10 +179,11 @@ const Content = ({
           {isLoading
             ? [...Array(15)].map((item, i) => <CardLoader key={i} />)
             : cards
-            .slice(0, numberOfItems)
+
                 .filter((obj) =>
                   obj.name.toLowerCase().includes(inputValue.toLowerCase())
                 )
+                .slice(0, numberOfItems)
                 .map((obj) => (
                   <Card
                     key={obj.id}

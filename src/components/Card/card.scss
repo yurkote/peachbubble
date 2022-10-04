@@ -108,6 +108,8 @@
 .card__img {
   border-radius: 5px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
   &:hover {
     img {
       transform: scale(1.5);

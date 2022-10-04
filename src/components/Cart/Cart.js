@@ -1,11 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./cart.scss";
 import MiniCard from "../MiniCard/MiniCard";
 import axios from "axios";
+import AppContext from "../context";
 
 const Cart = ({ onClose, items = [], removeFrom }) => {
+  const { cartItems, setCartItems } = useContext(AppContext);
   let totalValue = items.reduce((prev, cur) => prev + +cur.price, 0).toFixed(2);
+
+  console.log(cartItems.length);
+
+  const makeOrder = async () => {
+    try {
+      const { data } = await axios.post(
+        "https://633770b95327df4c43d42ba8.mockapi.io/orders",
+        {
+          orders: cartItems,
+        }
+      );
+      console.log("order id: " + data.orderId);
+      await setCartItems([]);
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        console.log(item.idApi);
+        await axios.delete(
+          "https://633770b95327df4c43d42ba8.mockapi.io/cart/" + item.idApi
+          );
+        }
+      } catch (error) {
+        console.log('something was wrong with request to MockApi');
+      }
+
+  };
 
   return (
     <div className="cart">
@@ -45,7 +72,7 @@ const Cart = ({ onClose, items = [], removeFrom }) => {
             Full Price:
             <span> ${totalValue}</span>
           </div>
-          <button className="cart__button button">
+          <button className="cart__button button" disabled={cartItems.length <= 0 ? true : false} onClick={makeOrder}>
             <span className="button-text cart__button-text">Checkout</span>
           </button>
         </div>
