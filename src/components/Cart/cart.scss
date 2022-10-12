@@ -89,3 +89,18 @@
 }
 .cart__button-text {
 }
+.loading {
+  pointer-events: none;
+  background: linear-gradient(100deg, #9dd458 40%, #f6f7f8e3 50%, #9dd458 60%);
+  background-size: 300%;
+  animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

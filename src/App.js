@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 import AppContext from "./components/context";
-import axios from "axios";
 import "./app.scss";
 import Favorites from "./pages/Favorites";
 
-let cartState;
-let favoriteState;
-// const cartState = JSON.parse(localStorage.getItem("cardsOncart"));
-// const favoriteState = JSON.parse(localStorage.getItem("favoriteCards"));
+const cartState = JSON.parse(localStorage.getItem("cardsOncart"));
+const favoriteState = JSON.parse(localStorage.getItem("favoriteCards"));
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -23,59 +20,24 @@ function App() {
 
   const add = (cardObject, flag) => {
     if (flag) {
-      axios.post(
-        "https://633770b95327df4c43d42ba8.mockapi.io/favorites",
-        cardObject
-      );
       setFavoriteCards((prev) => [...prev, cardObject]);
     } else {
-      axios.post("https://633770b95327df4c43d42ba8.mockapi.io/cart/", cardObject);
       setCartItems((prev) => [...prev, cardObject]);
     }
   };
 
-  async function remove(id, flag) {
+  const remove = (id, flag) => {
     if (flag) {
-      try {
-        const res = await axios(
-          `https://633770b95327df4c43d42ba8.mockapi.io/favorites/`
-        );
-        const delItem = res.data.filter((item) => item.id == id);
-        setFavoriteCards((prev) => prev.filter((el) => el.id !== id));
-        await axios.delete(
-          `https://633770b95327df4c43d42ba8.mockapi.io/favorites/${delItem[0].idApi}`
-        );
-      } catch (error) {
-        console.log("to fast request");
-      }
+      setFavoriteCards((prev) => prev.filter((el) => el.id !== id));
     } else {
-      try {
-        const res = await axios(
-          `https://633770b95327df4c43d42ba8.mockapi.io/cart/`
-        );
-        const delItem = res.data.filter((item) => item.id == id);
-        setCartItems((prev) => prev.filter((el) => el.id !== id));
-        await axios.delete(
-          `https://633770b95327df4c43d42ba8.mockapi.io/cart/${delItem[0].idApi}`
-        );
-      } catch (error) {
-        console.log("to fast request");
-      }
+      setCartItems((prev) => prev.filter((el) => el.id !== id));
     }
-  }
+  };
 
   const body = document.getElementsByTagName("body")[0];
   cartOpened ? body.classList.add("lock") : body.classList.remove("lock");
 
   useEffect(() => {
-    axios("https://633770b95327df4c43d42ba8.mockapi.io/cart").then((res) => {
-      setCartItems(res.data);
-    });
-    axios("https://633770b95327df4c43d42ba8.mockapi.io/favorites").then(
-      (res) => {
-        setFavoriteCards(res.data);
-      }
-    );
     fetch("https://api.jsonbin.io/v3/b/633344335c146d63caab5e46", {
       headers: {
         "X-Master-Key":
