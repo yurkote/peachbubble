@@ -5,9 +5,10 @@ import App from "./App";
 
 document.addEventListener("DOMContentLoaded", function () {
   ReactDom.render(
+    // <Router basename="/peachbubble">
     <Router>
       <App />
     </Router>,
-  document.querySelector(".app")
+    document.querySelector(".app")
   );
 });
